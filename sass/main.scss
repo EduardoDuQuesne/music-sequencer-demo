@@ -1,0 +1,101 @@
+body {
+	background-color: black;
+}
+// .rotate-seq {
+// 	transform: rotate(270deg);
+// 	transform-origin: 200px 0px;
+// 	display: inline-block;
+// 	// margin: 0 auto;
+// 	// margin-top: 0;
+// 	// margin-bottom: 0;
+// 	height: 200px;
+// 	width: 800px;
+// 	margin-top: 50px;	
+	
+// }
+
+
+p {
+	color: white;
+}
+
+
+// .flex-wrap {
+// 	display: flex !important;
+// 	justify-content: space-around !important;
+// }
+
+.flex-wrap-buttons {
+	margin: 0 auto;
+	width: 50%;
+	display: flex;
+	justify-content: space-between;
+	margin-left: 0px;
+}
+
+// .play,
+// .stop {
+// 	display: inline;
+// 	margin: 0 auto;
+
+// }
+
+h2,
+h3 {
+	color: white;
+	
+}
+
+h4 {
+	color: white;
+
+}
+
+// #spectogram {
+// 	margin: 0 auto;
+// 	margin-top: 20px;
+// 	margin-bottom: 20px;
+// }
+
+.chord-flexwrap {
+	display: flex;
+	justify-content: space-between;
+	width: 70%;
+	margin-left: 20px;
+}
+p.chord {
+	border: 1px solid white;
+	text-align: center;
+	padding: 10px 15px;
+	margin-top: 0;
+	margin-bottom: 0;
+	// margin-left: 10px;
+
+}
+.play {
+	background-color: grey;
+}
+.sequencer {
+	margin-left: 30px;
+}
+.border {
+	border: 2px solid yellow;
+}
+.fx-label {
+	display: inline;
+}
+
+.fx-wrap {
+	display: flex;
+	justify-content: space-between;
+	width: 40%;
+}
+.fx-hidden {
+	display: none;
+}
+.seq-hidden {
+	display: none;
+}
+.arp-flexwrap {
+	display: flex;
+}
