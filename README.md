@@ -12,7 +12,7 @@
 * NexusUI
 * jQuery
 
-Tone.js ref: https://tonejs.github.io 
+Tone.js ref: https://tonejs.github.io  
 NexusUI: https://nexus-js.github.io/ui/
 
 
