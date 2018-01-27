@@ -320,21 +320,25 @@ $('#stop').on("click", () => {
 logIn.on("click", function() {
     auth.logIn()
     .then(result => {
-        $("#login-btn").hide();
-        $("#logout-btn").show();
+    })
+    .catch(error => {
+        console.log('Error: ', error );
     });
 });
-
 logOut.on("click", function() {
     auth.logOut()
     .then(result => {
-        $("#login-btn").show();
-        $("#logout-btn").hide();
     });
 });
-
-firebase.auth().onAuthStateChanged(() => {
-    console.log("Who is our user?", firebase.auth().currentUser);
+firebase.auth().onAuthStateChanged((user) => {
+    console.log('User: ', user );
+    if (user ) {
+        $("#login-btn").hide();
+        $("#logout-btn").show();
+    } else {
+        $("#login-btn").show();
+        $("#logout-btn").hide();
+    }
   });
 
 //tempo//
