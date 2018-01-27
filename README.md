@@ -4,7 +4,7 @@
 
 ### Objectives
 * Build a fun interactive music sequencer 
-* Learn  how Tone.js and NexusUI function
+* Learn  how to use Tone.js and NexusUI function
 * Use skills learned in class to build and mainpulate the app
 
 ### Essential Project Dependencies with npm install
