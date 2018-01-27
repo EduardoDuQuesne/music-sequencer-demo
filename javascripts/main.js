@@ -3,6 +3,8 @@
 const $ = require('jquery');
 const Nexus = require('nexusui');
 const Tone = require('tone');
+const firebase = require("./config/fbConfig");
+const auth = require('./userFactory');
 
 /////Master Transport/////
 Nexus.context = Tone.context;
@@ -19,6 +21,19 @@ let arpVolPan = new Tone.PanVol();
 let bassVolPan = new Tone.PanVol();
 let beatVolPan = new Tone.PanVol();
 
+/////Log In and Out/////
+let logIn = new Nexus.TextButton('#login-btn' ,{
+    'size': [150,50],
+    'state': false,
+    'text': 'Log In',
+    'alternate': false
+});
+let logOut = new Nexus.TextButton('#logout-btn' ,{
+    'size': [150,50],
+    'state': false,
+    'text': 'Log Out',
+    'alternate': false
+});
 
 /////Tempo Interface/////
 let tempoKnob = new Nexus.Number('#tempo', {
@@ -301,6 +316,27 @@ $('#stop').on("click", () => {
 });
 
 ///// EVENT LISTENERS /////
+//Authorization//
+logIn.on("click", function() {
+    auth.logIn()
+    .then(result => {
+        $("#login-btn").hide();
+        $("#logout-btn").show();
+    });
+});
+
+logOut.on("click", function() {
+    auth.logOut()
+    .then(result => {
+        $("#login-btn").show();
+        $("#logout-btn").hide();
+    });
+});
+
+firebase.auth().onAuthStateChanged(() => {
+    console.log("Who is our user?", firebase.auth().currentUser);
+  });
+
 //tempo//
 tempoKnob.on("change", function () {
     Tone.Transport.bpm.value = tempoKnob.value;

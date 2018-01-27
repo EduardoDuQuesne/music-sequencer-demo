@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 sass-cache/
 stylesheets/
+javascripts/config/fbCreds.js
+.sass-cache/
