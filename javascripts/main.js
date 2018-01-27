@@ -3,6 +3,7 @@
 const $ = require('jquery');
 const Nexus = require('nexusui');
 const Tone = require('tone');
+const store = require('./songFactory');
 const firebase = require("./config/fbConfig");
 const auth = require('./userFactory');
 
@@ -32,6 +33,14 @@ let logOut = new Nexus.TextButton('#logout-btn' ,{
     'size': [150,50],
     'state': false,
     'text': 'Log Out',
+    'alternate': false
+});
+
+/////User Settings////
+let storeBtn = new Nexus.TextButton('#store-btn' ,{
+    'size': [150,50],
+    'state': false,
+    'text': 'Store Song',
     'alternate': false
 });
 
@@ -335,11 +344,15 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user ) {
         $("#login-btn").hide();
         $("#logout-btn").show();
+        $("#store-btn").show();
     } else {
         $("#login-btn").show();
         $("#logout-btn").hide();
+        $("#store-btn").hide();
     }
   });
+
+
 
 //tempo//
 tempoKnob.on("change", function () {
@@ -418,8 +431,38 @@ let spectogram = new Nexus.Spectrogram('#spectogram', {
 spectogram.connect(Tone.Master);
 
 
+let storeSettings = () => {
+    let settings = {
+    uid: firebase.auth().currentUser.uid,
+    tempo: Tone.Transport.bpm.value,
+    tempoDisplay: tempoKnob.value,
+    arpMatrix: sequencer.matrix.pattern,
+    arpPan: arpVolPan.pan.value,
+    arpPanDisplay: arpVolPanKnob.x,
+    arpVol: arpVolPan.volume.input.value,
+    arpVolDisplay: arpVolPanKnob.y,
+    bassMatrix: bassSequencer.matrix.pattern,
+    bassPan: bassVolPan.pan.value,
+    bassPanDisplay: bassVolPanKnob.x,
+    bassVol: bassVolPan.volume.input.value,
+    bassVolDisplay: bassVolPanKnob.y,  
+    beatMatrix: beatSequencer.matrix.pattern,
+    beatPan: beatVolPan.pan.value,
+    beatPanDisplay: beatVolPanKnob.x,
+    beatVol: beatVolPan.volume.input.value,
+    beatVolDisplay: beatVolPanKnob.y,  
+    delayOneWet: delayOne.wet.value, 
+    delayOneDisplay: dialDelayWet.value,
+    delayOneFB: delayOne.feedback.value,
+    delayOneTime: delayOne.delayTime.value,
+    delayOneTimeDisplay: dialDelayTime.value,
+    delayOneFBDisplay: dialDelayFeedback.value
+    };
+    return settings;
+};
 
-
-
-
-
+//User Settings//
+storeBtn.on("click", function() {
+    let settings = storeSettings();
+    store.storeSettings(settings);
+ });
