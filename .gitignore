@@ -4,3 +4,5 @@ sass-cache/
 stylesheets/
 javascripts/config/fbCreds.js
 .sass-cache/
+dist/
+css/
