@@ -7,13 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tone-Nexus</title>
     <link rel='stylesheet' type='text/css' href='css/main.css'>
+    <script src='font-awesome/fontawesome-all.js'></script>
 </head>
 
 <body>
-    
-    
+
+    <h2 class="header">Terrible Techno</h2>
+
     <div class="flex-wrap-buttons">
-        <h2 class="header">Transport: </h2>
         <div id="play" class="play"></div>
         <div id="stop" class="stop"></div>
         <div id="tempo" class="stop"></div>
@@ -22,6 +23,27 @@
         <div id="logout-btn" class="auth-hidden"></div>
         <div id="store-btn" class="auth-hidden"></div>
     </div>
+    <br>
+    <br>
+    <div id "settings" class="user-settings">
+        <a id="save-settings" href="#" title="save">
+            <i id="save-btn" class="icons fas fa-save fa-2x"></i>
+        </a>
+        <a id="load-settings" href="#" title="load">
+            <i class="icons fas fa-spinner fa-2x"></i>
+        </a>
+        <a id="clear-settings" href="#" title="clear">
+            <i class="icons fas fa-minus-circle fa-2x"></i>
+        </a>
+        <input type="text" id="settings-title" class="settings-title">
+        <div>
+            <h4>Your Settings: </h4>
+            <ul id="user-settings">
+            </ul>
+        </div>
+    </div>
+    <br>
+    <br>
     <div id="select-sequencer"></div>
     <div class="flex-wrap">
         <div>
@@ -115,76 +137,76 @@
         <h2>Chords:</h2>
         <div class="chord-flexwrap">
             <div class="chord-flexitem chord-0">
-                <p class="chord play" value="Imaj" id="one">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj" id="one">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viiminb5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-1">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viimin5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-2">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viimin5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-3">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viimin5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-4">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viiminb5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-5">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viiminb5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-6">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viiminb5 chord" value="viiminb5">viiminb5</p>
             </div>
             <div class="chord-flexitem chord-7">
-                <p class="chord play" value="Imaj">Imaj</p>
-                <p class="chord" value="iimin">iimin</p>
-                <p class="chord" value="iiimin">iiimin</p>
-                <p class="chord" value="IVmaj">IVmaj</p>
-                <p class="chord" value="Vdom">Vdom</p>
-                <p class="chord" value="vimin">vimin</p>
-                <p class="chord" value="viiminb5">viiminb5</p>
+                <p class="Imaj chord play" value="Imaj">Imaj</p>
+                <p class="iimin chord" value="iimin">iimin</p>
+                <p class="iiimin chord" value="iiimin">iiimin</p>
+                <p class="IVmaj chord" value="IVmaj">IVmaj</p>
+                <p class="Vdom chord" value="Vdom">Vdom</p>
+                <p class="vimin chord" value="vimin">vimin</p>
+                <p class="viiminb5 chord" value="viiminb5">viiminb5</p>
             </div>
 
         </div>
