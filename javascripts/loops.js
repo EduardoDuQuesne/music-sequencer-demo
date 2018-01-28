@@ -25,6 +25,28 @@ let changeChords = (target) => {
     }
 };
 
+let getChords = () => {
+    let arpKeys = [];
+    for (let i = 0; i < 8; i++) {
+        let div = $(`.chord-${i}`);
+        arpKeys.push($(`.chord-${i}`).children().filter('.play').attr('value'));
+    }
+    return arpKeys;
+};
+
+
+let loadUserChords = (chords) => {
+    arpKeys = [];
+    let count = 0;
+    chords.forEach((chord) => {
+        $(`.chord-${count}`).children().removeClass('play');
+            $(`.chord-${count}`).find(`.${chord}`).addClass('play');
+            arpKeys.push($(`.chord-${count}`).children().filter('.play').attr('value'));
+            count += 1;
+    });
+    console.log('Array:', arpKeys);
+};
+
 
 ///// Arpeggiator One /////
 //Sounds to be replaced later//
@@ -68,7 +90,6 @@ let arpLoop = new Tone.Sequence((time, col) => {
     step = [];
     for (let i = 0; i < 4; i++) {
         step.push(interface.sequencer.matrix.pattern[i][col]);
-        console.log('LOOP1: ', interface.sequencer.matrix.pattern[i][col]);
     }
     for (let i = 0; i < 4; i++) {
         if (step[i] === true) {
@@ -138,7 +159,6 @@ let drumLoop = new Tone.Sequence((time, col) => {
 
 ///// MASTER CHORD LOOP /////
 let chordLoop = new Tone.Sequence((time, col) => {
-    console.log('Check: ', col);
     arpLoop.start();
     bassLoop.start();
     drumLoop.start();
@@ -155,5 +175,7 @@ module.exports = {
     drumLoop,
     chordLoop,
     changeChords,
-    loadChords
+    loadChords,
+    getChords,
+    loadUserChords,
 };

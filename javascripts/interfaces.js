@@ -17,14 +17,6 @@ module.exports.logOut = new Nexus.TextButton('#logout-btn' ,{
     'alternate': false
 });
 
-/////User Settings////
-module.exports.storeBtn = new Nexus.TextButton('#store-btn' ,{
-    'size': [150,50],
-    'state': false,
-    'text': 'Store Song',
-    'alternate': false
-});
-
 /////Tempo Interface/////
 module.exports.tempoKnob = new Nexus.Number('#tempo', {
     'size': [70, 50],

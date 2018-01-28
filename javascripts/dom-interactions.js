@@ -5,16 +5,17 @@ const interface = require('./interfaces');
 const fx = require('./tone-fx');
 const firebase = require("./config/fbConfig");
 const auth = require('./userFactory');
-const store = require('./songFactory');
+const factory = require('./songFactory');
 const Nexus = require('nexusui');
 const Tone = require('tone');
 const loops = require('./loops');
+const settings = require('./set-settings');
+const view = require('./view');
 
 Nexus.context = Tone.context;
 Tone.Transport.start();
 // interface.spectogram.connect(Tone.Master);
 
-///// EVENT LISTENERS /////
 //Authorization//
 interface.logIn.on("click", function () {
     auth.logIn()
@@ -33,6 +34,11 @@ firebase.auth().onAuthStateChanged((user) => {
         $("#login-btn").hide();
         $("#logout-btn").show();
         $("#store-btn").show();
+        factory.getAllSettings(user.uid)
+            .then(settings => {
+                let userSettings = settings;
+                view.displaySettings(userSettings);
+            });
     } else {
         $("#login-btn").show();
         $("#logout-btn").hide();
@@ -56,11 +62,47 @@ $('#stop').on("click", () => {
     loops.drumLoop.stop();
 });
 
-//User Settings//
-interface.storeBtn.on("click", function () {
-    let settings = storeSettings();
-    store.storeSettings(settings);
+/////User Settings/////
+
+//Store Settings//
+$("#save-settings").on("click", function () {
+    $('#settings-title').focus();
+    $('#save-btn').addClass('red-icon');
 });
+$('#settings-title').on('keypress', function (e) {
+    if (e.which === 13 && $('#save-btn').hasClass('red-icon') === true) {
+        let input = $('#settings-title').val();
+        let currentSettings = settings.storeSettings(input);
+        factory.storeSettings(currentSettings);
+        $('#settings-title').blur().val('');
+        $('#save-btn').removeClass('red-icon');
+        factory.getAllSettings(firebase.auth().currentUser.uid)
+            .then(settings => {
+                let userSettings = settings;
+                view.displaySettings(userSettings);
+            });
+    }
+});
+
+/////Load Setting/////
+$(document).on("click", ".get-setting", function () {
+    let user = firebase.auth().currentUser.uid;
+    let settingId = $(this).attr('id');
+    factory.getSetting(settingId)
+        .then(setting => {
+            settings.recallSetting(setting);
+        });
+});
+
+////Delete Setting/////
+$(document).on("click", ".delete-setting", function() {
+    let fbId = $(this).attr('id').slice(4);
+    factory.deleteSetting(fbId);
+});
+
+
+$("#clear-settings").on("click", function () {});
+
 
 //Set class to play on all 'Iman' chords on startup//
 $(document).ready(function () {
