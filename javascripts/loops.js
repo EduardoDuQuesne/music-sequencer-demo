@@ -5,6 +5,13 @@ const Tone = require('tone');
 const interface = require('./interfaces');
 const fx = require('./tone-fx');
 
+let synth = new Tone.Synth().chain(fx.arpVolPan, fx.delayOne, fx.phaserOne, Tone.Master);
+let bassSynth = new Tone.FMSynth().chain(fx.bassVolPan, Tone.Master);
+synth.envelope.release = 0.2;
+bassSynth.envelope.sustain = 0.1;
+// bassSynth.envelope.decay = 0;
+// bassSynth.envelope.release = 0.4;
+
 /////Load Chords On Page Load
 let arpKeys = [];
 let loadChords = () => {
@@ -44,7 +51,6 @@ let loadUserChords = (chords) => {
             arpKeys.push($(`.chord-${count}`).children().filter('.play').attr('value'));
             count += 1;
     });
-    console.log('Array:', arpKeys);
 };
 
 
@@ -71,18 +77,18 @@ let notes = new Tone.Players({
 ///// Arpeggiator One ////
 //Note Names Arrays//
 let noteNames = {
-    Imaj: ["A", "C#", "E", "G#"],
+    Imaj: ["A4", "C#4", "E4", "G#4"],
     // ASmin: ["A#", "C#", "F", "G#"],
-    iimin: ["B", "D", "F#", "A"],
+    iimin: ["B4", "D4", "F#4", "A5"],
     // Cmaj: ["C", "E", "G", "B"],
-    iiimin: ["C#", "E", "G#", "B"],
-    IVmaj: ["D", "F#", "A", "C#"],
+    iiimin: ["C#4", "E4", "G#4", "B5"],
+    IVmaj: ["D4", "F#4", "A5", "C#5"],
     // DSmin: ["D#", "F#", "A#", "C#"],
-    Vdom: ["E", "G#", "B", "D"],
+    Vdom: ["E4", "G#4", "B5", "D5"],
     // Fmaj: ["F", "G#", "C", "D#"],
-    vimin: ["F#", "A", "C#", "E"],
+    vimin: ["F#4", "A5", "C#5", "E5"],
     // Gmaj: ["G", "A#", "C#", "F"],
-    viiminb5: ["G#", "B", "D", "F"]
+    viiminb5: ["G#4", "B5", "D5", "F5"]
 };
 let seqKey = [];
 let step = [];
@@ -93,7 +99,7 @@ let arpLoop = new Tone.Sequence((time, col) => {
     }
     for (let i = 0; i < 4; i++) {
         if (step[i] === true) {
-            notes.get(seqKey[i]).start(time, 0, "32n", 0);
+           synth.triggerAttackRelease(seqKey[i], "8n");
         }
     }
 }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "16n");
@@ -118,6 +124,21 @@ let notes2 = new Tone.Players({
     "fadeOut": "64n"
 }).chain(fx.bassVolPan, Tone.Master);
 
+let noteNamesBass = {
+    Imaj: ["A2", "C#2", "E2", "G#2"],
+    // ASmin: ["A#", "C#", "F", "G#"],
+    iimin: ["B2", "D2", "F#2", "A3"],
+    // Cmaj: ["C", "E", "G", "B"],
+    iiimin: ["C#2", "E2", "G#2", "B3"],
+    IVmaj: ["D2", "F#2", "A3", "C#3"],
+    // DSmin: ["D#", "F#", "A#", "C#"],
+    Vdom: ["E2", "G#2", "B3", "D3"],
+    // Fmaj: ["F", "G#", "C", "D#"],
+    vimin: ["F#2", "A3", "C#3", "E3"],
+    // Gmaj: ["G", "A#", "C#", "F"],
+    viiminb5: ["G#2", "B3", "D3", "F3"]
+};
+
 let bassLoop = new Tone.Sequence((time, col) => {
     step = [];
     for (let i = 0; i < 4; i++) {
@@ -125,7 +146,7 @@ let bassLoop = new Tone.Sequence((time, col) => {
     }
     for (let i = 0; i < 4; i++) {
         if (step[i] === true) {
-            notes2.get(seqKey[i]).start(time, 0, "32n", 0);
+            bassSynth.triggerAttackRelease(seqKeyBass[i]);
         }
     }
 }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "16n");
@@ -163,6 +184,7 @@ let chordLoop = new Tone.Sequence((time, col) => {
     bassLoop.start();
     drumLoop.start();
     seqKey = noteNames[arpKeys[col]];
+    seqKeyBass = noteNamesBass[arpKeys[col]];
     $(`.chord-${col}`).addClass('border');
     $(`.chord-${col}`).siblings().removeClass('border');
 
