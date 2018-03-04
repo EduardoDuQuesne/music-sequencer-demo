@@ -1,4 +1,4 @@
-# Sequencer Demo
+# Music Sequencer Demo
 
 ## Demo for NSS Front-end Capstone
 
